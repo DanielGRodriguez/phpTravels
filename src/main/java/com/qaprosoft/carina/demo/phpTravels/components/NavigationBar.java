@@ -1,32 +1,34 @@
-package com.solvd.phpTravels.components;
+package com.qaprosoft.carina.demo.phpTravels.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.solvd.phpTravels.pages.BookingsPage;
-import com.solvd.phpTravels.pages.DashboardPage;
-import com.solvd.phpTravels.pages.DocsPage;
-import com.solvd.phpTravels.pages.WebsitePage;
+import com.qaprosoft.carina.demo.phpTravels.pages.BookingsPage;
+import com.qaprosoft.carina.demo.phpTravels.pages.DashboardPage;
+import com.qaprosoft.carina.demo.phpTravels.pages.DocsPage;
+import com.qaprosoft.carina.demo.phpTravels.pages.WebsitePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.springframework.context.annotation.Profile;
 
 public class NavigationBar extends AbstractUIObject {
-    @FindBy(xpath = "//*[@id=\"drawerToggle\"]")
+
+    @FindBy(xpath = "//i[normalize-space()='menu']")
     private ExtendedWebElement leftNavMenu;
 
-    @FindBy(xpath = "/html/body/nav/div/a")
+    @FindBy(xpath = "//div[@class='text-uppercase font-monospace']")
     private ExtendedWebElement dashboardLink;
 
-    @FindBy(xpath = "/html/body/nav/div/div/ul/li[1]")
+    @FindBy(xpath = "//a[@class='nav-link' and @xpath=\"1\"]")
     private ExtendedWebElement websiteLink;
 
-    @FindBy(xpath = "/html/body/nav/div/div/ul/li[2]")
+    @FindBy(xpath = "//a[@class='nav-link loadeffect']")
     private ExtendedWebElement bookingsLink;
 
-    @FindBy(xpath = "/html/body/nav/div/div/ul/li[3]")
+    @FindBy(xpath = "//li[last()]/a[@class='nav-link']")
     private ExtendedWebElement docsLink;
 
-    @FindBy(xpath = "/html/body/nav/div/div/div")
-    private ExtendedWebElement userProfile;
+    @FindBy(xpath = "//button[@id='dropdownMenuProfile']")
+    private ProfileDropdown userProfile;
 
     public NavigationBar(WebDriver driver) {
         super(driver);

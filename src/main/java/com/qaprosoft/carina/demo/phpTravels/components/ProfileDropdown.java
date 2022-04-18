@@ -1,23 +1,26 @@
-package com.solvd.phpTravels.components;
+package com.qaprosoft.carina.demo.phpTravels.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.solvd.phpTravels.pages.DropdownNav.HelpPage;
-import com.solvd.phpTravels.pages.DropdownNav.ProfilePage;
-import com.solvd.phpTravels.pages.DropdownNav.SettingsPage;
-import com.solvd.phpTravels.pages.LoginPage;
+import com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav.HelpPage;
+import com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav.SettingsPage;
+import com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav.ProfilePage;
+import com.qaprosoft.carina.demo.phpTravels.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class ProfileDropdown extends AbstractUIObject {
 
-    @FindBy(xpath = "/html/body/nav/div/div/div/div[3]/ul/li[1]/a")
+    @FindBy(xpath = "//div[normalize-space()='Profile']")
     private ExtendedWebElement profileLink;
-    @FindBy(xpath = "/html/body/nav/div/div/div/div[3]/ul/li[2]/a")
+
+    @FindBy(xpath = "//div[normalize-space()='Settings']")
     private ExtendedWebElement settingsLink;
-    @FindBy(xpath = "/html/body/nav/div/div/div/div[3]/ul/li[3]/a")
+
+    @FindBy(xpath = "//div[normalize-space()='Help']")
     private ExtendedWebElement helpLink;
-    @FindBy(xpath = "/html/body/nav/div/div/div/div[3]/ul/li[5]/a")
+
+    @FindBy(xpath = "//div[normalize-space()='Logout']")
     private ExtendedWebElement logoutLink;
 
     public ProfileDropdown(WebDriver driver) {
