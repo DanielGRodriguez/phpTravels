@@ -8,29 +8,34 @@ import org.openqa.selenium.support.FindBy;
 public class TableRow extends AbstractUIObject {
 
     @FindBy(xpath = "//td/select[@id='booking_status']")
-    private ExtendedWebElement tableBookingStatus;
+    private ExtendedWebElement bookingStatusTable;
 
     @FindBy(xpath = "//td/select[@id='payment_status']")
-    private ExtendedWebElement tablePaymentStatus;
+    private ExtendedWebElement paymentStatusTable;
 
     @FindBy(xpath = "//td/a")
-    private ExtendedWebElement tablePaymentExecute;
+    private ExtendedWebElement paymentExecuteTable;
 
     @FindBy(xpath = "//td/a[@target='_blank']")
-    private ExtendedWebElement buttonInvoice;
+    private ExtendedWebElement invoiceOperationButton;
 
     @FindBy(xpath = "//td/button[@class='btn btn-danger mdc-ripple-upgraded']")
-    private ExtendedWebElement buttonDeleteOperation;
+    private ExtendedWebElement deleteOperationButton;
 
     public TableRow(WebDriver driver) {
         super(driver);
     }
 
     public String getBookingStatus() {
-        return tableBookingStatus.getText();
+        return bookingStatusTable.getText();
     }
 
     public String getPaymentStatus() {
-        return tablePaymentStatus.getText();
+        return paymentStatusTable.getText();
     }
+
+    public void setDeleteOperation() { deleteOperationButton.click();}
+
+    public void setInvoiceOperation() { invoiceOperationButton.click();}
+
 }

@@ -14,6 +14,9 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//input[@name='password']")
     private ExtendedWebElement passwordInput;
 
+    @FindBy(xpath = "//label[@class='checkbox']")
+    private ExtendedWebElement rememberMeCheck;
+
     @FindBy(xpath = "//button[@type='submit']")
     private ExtendedWebElement loginButton;
 
@@ -30,9 +33,27 @@ public class LoginPage extends AbstractPage {
         return new BookingsPage(driver);
     }
 
-    public ExtendedWebElement openForgotAcc() {
+    public void openForgotAcc() {
         forgotAccButton.click();
-        return new ExtendedWebElement();
     }
 
+    public void typeEmail(String email) {
+        emailInput.type(email);
+    }
+
+    public void typePassword(String password) {
+        passwordInput.type(password);
+    }
+
+    public String getEmail(){
+        return emailInput.getText();
+    }
+
+    public String getText(){
+        return passwordInput.getText();
+    }
+
+    public void clickRememberMeCheck() {
+        rememberMeCheck.click();
+    }
 }
