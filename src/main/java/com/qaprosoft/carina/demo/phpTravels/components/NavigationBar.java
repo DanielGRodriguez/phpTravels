@@ -4,11 +4,8 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.phpTravels.pages.BookingsPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DashboardPage;
-import com.qaprosoft.carina.demo.phpTravels.pages.DocsPage;
-import com.qaprosoft.carina.demo.phpTravels.pages.WebsitePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.springframework.context.annotation.Profile;
 
 public class NavigationBar extends AbstractUIObject {
 
@@ -44,18 +41,8 @@ public class NavigationBar extends AbstractUIObject {
         return new DashboardPage(driver);
     }
 
-    public WebsitePage openWebsitePage() {
-        websiteLink.click();
-        return new WebsitePage(driver);
-    }
-
     public BookingsPage openBookingsPage() {
         bookingsLink.click();
         return new BookingsPage(driver);
-    }
-
-    public DocsPage openDocsPage() {
-        docsLink.click();
-        return new DocsPage(driver);
     }
 }

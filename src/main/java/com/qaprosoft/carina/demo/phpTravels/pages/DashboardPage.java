@@ -1,7 +1,7 @@
 package com.qaprosoft.carina.demo.phpTravels.pages;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.phpTravels.components.BookingsButtons;
+import com.qaprosoft.carina.demo.phpTravels.components.BookingsMenu;
 import com.qaprosoft.carina.demo.phpTravels.components.LeftMenuBar;
 import com.qaprosoft.carina.demo.phpTravels.components.NavigationBar;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +16,7 @@ public class DashboardPage extends AbstractPage {
     private LeftMenuBar leftMenuBar;
 
     @FindBy(xpath = "//div[@class='row gx-3']")
-    private BookingsButtons buttonsBookings;
+    private BookingsMenu buttonsBookings;
 
     public DashboardPage(WebDriver driver) {
         super(driver);

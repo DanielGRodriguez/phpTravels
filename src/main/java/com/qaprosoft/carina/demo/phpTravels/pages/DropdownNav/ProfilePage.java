@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProfilePage extends AbstractPage {
 
-    @FindBy(className = "navbar")
+    @FindBy(className = "//nav[@class]")
     private NavigationBar navigationBar;
 
     public ProfilePage(WebDriver driver) {
