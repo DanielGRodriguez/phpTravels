@@ -40,9 +40,9 @@ public class LoginPageTest implements IAbstractTest {
         loginPage.typeEmail("admin@phptravels.com");
         loginPage.typePassword("demoadmin");
         loginPage.clickSubmitButton();
-        Assert.assertTrue(dashPage.isPageOpened());
         dashPage = new DashboardPage(getDriver());
         dashPage.open();
+        Assert.assertTrue(dashPage.isPageOpened());
         Assert.assertTrue(dashPage.isPageOpened(), "Dashboard Page is not opened");
     }
 
