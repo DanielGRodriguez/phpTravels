@@ -12,5 +12,50 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 public class LoginPageTest implements IAbstractTest {
-    
+    LoginPage loginPage = null;
+    DashboardPage dashPage = null;
+
+    @BeforeSuite
+    public void test() {
+        loginPage = new LoginPage(getDriver());
+    }
+
+    @Test
+    @TestLabel(name = "feature", value = {"web", "regression"})
+    public void testOpenPage() {
+        loginPage.open();
+        loginPage.setPageOpeningStrategy(PageOpeningStrategy.BY_URL);
+    }
+
+    @Test(dependsOnMethods = "testOpenPage")
+    public void testForgotAccButton() {
+        loginPage.clickForgotAcc();
+        loginPage.typeResetEmail("noadmin@jstravels.org");
+        loginPage.clickResetButton();
+    }
+
+    @Test(dependsOnMethods = "testOpenPage")
+    @TestLabel(name = "feature", value = {"web", "regression"})
+    public void testLoginAdminAcc() {
+        loginPage.typeEmail("admin@phptravels.com");
+        loginPage.typePassword("demoadmin");
+        loginPage.clickSubmitButton();
+        dashPage = new DashboardPage(getDriver());
+        dashPage.open();
+        Assert.assertTrue(dashPage.isPageOpened());
+        Assert.assertTrue(dashPage.isPageOpened(), "Dashboard Page is not opened");
+    }
+
+    @Test(dependsOnMethods = "testLoginAdminAcc")
+    @TestLabel(name = "feature", value = {"web", "regression"})
+    public void testChangeName() {
+        dashPage.open();
+        LeftMenuBar menuBar = dashPage.getLeftMenuBar();
+        Assert.assertTrue(dashPage.isUIObjectPresent(2), "Left Menu Bar menu wasn't found!");
+        menuBar.openSettingsSubmenu();
+
+        SettingsPage settingsPage = new SettingsPage(getDriver());
+        settingsPage.typeNameText("JS Travels");
+        settingsPage.clickSaveChangeButton();
+    }
 }
