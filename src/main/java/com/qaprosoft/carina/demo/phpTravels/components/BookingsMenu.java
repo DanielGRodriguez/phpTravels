@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.phpTravels.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
+import com.qaprosoft.carina.demo.phpTravels.pages.BookingsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -31,8 +32,13 @@ public class BookingsMenu extends AbstractUIObject{
         super(driver);
     }
 
-    public Table getTablesConfirmed() {
+    public BookingsPage clickConfirmedBookings() {
         confirmedButton.click();
-        return new Table(driver);
+        return new BookingsPage(driver);
+    }
+
+    public BookingsPage clickPendingBookings() {
+        pendingButton.click();
+        return new BookingsPage(driver);
     }
 }

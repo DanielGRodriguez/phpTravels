@@ -7,6 +7,9 @@ import org.openqa.selenium.support.FindBy;
 
 public class TableRow extends AbstractUIObject {
 
+    @FindBy(xpath = "")
+    private ExtendedWebElement bookingId;
+
     @FindBy(xpath = "//td/select[@id='booking_status']")
     private ExtendedWebElement bookingStatusTable;
 
@@ -26,6 +29,10 @@ public class TableRow extends AbstractUIObject {
         super(driver);
     }
 
+    public String getBookingId() {
+        return bookingId.getText();
+    }
+
     public String getBookingStatus() {
         return bookingStatusTable.getText();
     }
@@ -34,8 +41,8 @@ public class TableRow extends AbstractUIObject {
         return paymentStatusTable.getText();
     }
 
-    public void setDeleteOperation() { deleteOperationButton.click();}
+    public void clickDeleteButton() { deleteOperationButton.click();}
 
-    public void setInvoiceOperation() { invoiceOperationButton.click();}
+    public void clickInvoiceButton() { invoiceOperationButton.click();}
 
 }

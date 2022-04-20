@@ -1,5 +1,7 @@
 package com.qaprosoft.carina.demo.phpTravels.pages;
 
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
@@ -25,15 +27,16 @@ public class LoginPage extends AbstractPage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        setPageAbsoluteURL("https://phptravels.net/api/admin");
+        setUiLoadedMarker(loginButton);
+        setPageAbsoluteURL(R.CONFIG.get(Configuration.Parameter.URL.getKey()));
     }
 
-    public BookingsPage openBookingsPage() {
+    public BookingsPage clickBookingsPage() {
         loginButton.click();
         return new BookingsPage(driver);
     }
 
-    public void openForgotAcc() {
+    public void clickForgotAcc() {
         forgotAccButton.click();
     }
 
