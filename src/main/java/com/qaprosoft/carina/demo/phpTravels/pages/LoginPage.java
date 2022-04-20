@@ -37,9 +37,9 @@ public class LoginPage extends AbstractPage {
         setPageAbsoluteURL(R.CONFIG.get(Configuration.Parameter.URL.getKey()));
     }
 
-    public BookingsPage clickSubmitButton() {
+    public DashboardPage clickSubmitButton() {
         loginButton.click();
-        return new BookingsPage(driver);
+        return new DashboardPage(driver);
     }
 
     public void clickForgotAcc() {

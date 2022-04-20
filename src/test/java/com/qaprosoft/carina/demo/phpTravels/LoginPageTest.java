@@ -39,16 +39,17 @@ public class LoginPageTest implements IAbstractTest {
     public void testLoginAdminAcc() {
         loginPage.typeEmail("admin@phptravels.com");
         loginPage.typePassword("demoadmin");
-        loginPage.clickRememberMeCheck();
         loginPage.clickSubmitButton();
         Assert.assertTrue(dashPage.isPageOpened());
         dashPage = new DashboardPage(getDriver());
+        dashPage.open();
+        Assert.assertTrue(dashPage.isPageOpened(), "Dashboard Page is not opened");
     }
 
     @Test(dependsOnMethods = "testLoginAdminAcc")
     @TestLabel(name = "feature", value = {"web", "regression"})
     public void testChangeName() {
-        dashPage = new DashboardPage(getDriver());
+        dashPage.open();
         LeftMenuBar menuBar = dashPage.getLeftMenuBar();
         Assert.assertTrue(dashPage.isUIObjectPresent(2), "Left Menu Bar menu wasn't found!");
         menuBar.openSettingsSubmenu();

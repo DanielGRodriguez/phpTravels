@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.phpTravels.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.phpTravels.components.BookingsMenu;
 import com.qaprosoft.carina.demo.phpTravels.components.LeftMenuBar;
