@@ -25,4 +25,8 @@ public class DashboardPage extends AbstractPage {
     public NavigationBar getNavigationBar() {
         return navigationBar;
     }
+
+    public LeftMenuBar getLeftMenuBar() {
+        return leftMenuBar;
+    }
 }

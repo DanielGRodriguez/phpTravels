@@ -29,5 +29,7 @@ public class SettingsPage extends AbstractPage {
         return navigationBar;
     }
 
+    public void typeNameText(String newName) { nameTextField.type(newName); }
 
+    public void clickSaveChangeButton() { saveChangesButton.click(); }
 }

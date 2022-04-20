@@ -25,13 +25,19 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//a[@id='link-forgot']")
     private ExtendedWebElement forgotAccButton;
 
+    @FindBy(xpath = "//input[@id='resetemail']")
+    private ExtendedWebElement emailResetInput;
+
+    @FindBy(xpath = "//button[@id='btn-forgot']")
+    private ExtendedWebElement resetEmailButton;
+
     public LoginPage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(loginButton);
         setPageAbsoluteURL(R.CONFIG.get(Configuration.Parameter.URL.getKey()));
     }
 
-    public BookingsPage clickBookingsPage() {
+    public BookingsPage clickSubmitButton() {
         loginButton.click();
         return new BookingsPage(driver);
     }
@@ -59,4 +65,8 @@ public class LoginPage extends AbstractPage {
     public void clickRememberMeCheck() {
         rememberMeCheck.click();
     }
+
+    public void typeResetEmail(String email) { emailResetInput.type(email); }
+
+    public void clickResetButton() { resetEmailButton.click(); }
 }
