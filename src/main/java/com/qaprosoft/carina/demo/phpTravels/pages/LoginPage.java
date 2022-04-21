@@ -34,15 +34,17 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='alert alert-danger']")
     private ExtendedWebElement forgotAccountText;
 
+    @FindBy(xpath = "//div[text()=\"Redirecting Please Wait...\"]")
+    private ExtendedWebElement succesfulLoginText;
+
     public LoginPage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(loginButton);
         setPageAbsoluteURL(R.CONFIG.get(Configuration.Parameter.URL.getKey()));
     }
 
-    public DashboardPage clickSubmitButton() {
+    public void clickSubmitButton() {
         loginButton.click();
-        return new DashboardPage(driver);
     }
 
     public void clickForgotAcc() {
@@ -79,5 +81,9 @@ public class LoginPage extends AbstractPage {
 
     public String getEmailNotFoundText() {
         return forgotAccountText.getText();
+    }
+
+    public String getSuccesfulLoginText() {
+        return succesfulLoginText.getText();
     }
 }

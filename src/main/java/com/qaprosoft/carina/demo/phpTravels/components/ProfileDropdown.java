@@ -42,7 +42,7 @@ public class ProfileDropdown extends AbstractUIObject {
         return new HelpPage(driver);
     }
 
-    public LoginPage touchLogout() {
+    public LoginPage clickLogout() {
         logoutLink.click();
         return new LoginPage(driver);
     }

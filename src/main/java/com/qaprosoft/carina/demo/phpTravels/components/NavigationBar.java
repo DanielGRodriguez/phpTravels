@@ -25,7 +25,7 @@ public class NavigationBar extends AbstractUIObject {
     private ExtendedWebElement docsLink;
 
     @FindBy(xpath = "//button[@id='dropdownMenuProfile']")
-    private ProfileDropdown userProfile;
+    private ExtendedWebElement userProfile;
 
     public NavigationBar(WebDriver driver) {
         super(driver);
@@ -44,5 +44,10 @@ public class NavigationBar extends AbstractUIObject {
     public BookingsPage openBookingsPage() {
         bookingsLink.click();
         return new BookingsPage(driver);
+    }
+
+    public ProfileDropdown openProfileDropdown() {
+        userProfile.click();
+        return new ProfileDropdown(driver);
     }
 }

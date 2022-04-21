@@ -16,6 +16,23 @@ public class Table extends AbstractUIObject {
         super(driver);
     }
 
+    public String getChosenBookingStatus(String id) {
+        for(TableRow row : rows) {
+            if(row.getBookingId().equals(id)) {
+                return row.getBookingStatus();
+            }
+        }
+        return "";
+    }
+
+    public void getChosenPaymentStatus(String id) {
+        for(TableRow row : rows) {
+            if(row.getBookingId().equals(id)) {
+                row.getPaymentStatus();
+            }
+        }
+    }
+
     public void deleteBooking(String id) {
         for(TableRow row : rows) {
             if(row.getBookingId().equals(id)) {
@@ -23,4 +40,6 @@ public class Table extends AbstractUIObject {
             }
         }
     }
+
+
 }

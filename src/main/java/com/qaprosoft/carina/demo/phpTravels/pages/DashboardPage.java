@@ -34,4 +34,8 @@ public class DashboardPage extends AbstractPage {
     public LeftMenuBar getLeftMenuBar() {
         return leftMenuBar;
     }
+
+    public String getMainTitle() {
+        return dashboardTitle.getText();
+    }
 }
