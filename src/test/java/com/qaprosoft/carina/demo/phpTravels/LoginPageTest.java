@@ -16,6 +16,7 @@ public class LoginPageTest implements IAbstractTest {
     @Test
     public void testForgotAccButton() {
         LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.setPageOpeningStrategy(PageOpeningStrategy.BY_URL);
         loginPage.clickForgotAcc();
         loginPage.typeResetEmail("noadmin@jstravels.org");
         loginPage.clickResetButton();
@@ -43,6 +44,7 @@ public class LoginPageTest implements IAbstractTest {
 
     public void login(String email, String password) {
         LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.setPageOpeningStrategy(PageOpeningStrategy.BY_URL);
         loginPage.typeEmail(email);
         loginPage.typePassword(password);
         loginPage.clickSubmitButton();
