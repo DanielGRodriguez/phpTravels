@@ -26,6 +26,7 @@ public class SettingsPage extends AbstractPage {
 
     public SettingsPage(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(saveChangesButton);
     }
 
     public NavigationBar getNavigationBar() {

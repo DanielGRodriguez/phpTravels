@@ -35,8 +35,8 @@ public class LoginPageTest implements IAbstractTest {
         login("admin@phptravels.com", "demoadmin");
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         LeftMenuBar leftMenu =dashboardPage.getLeftMenuBar();
-        leftMenu.openSettingsSubmenu();
-        SettingsPage settingsPage = new SettingsPage(getDriver());
+
+        SettingsPage settingsPage = leftMenu.openSettingsSubmenu();
         settingsPage.typeNameText("JS Travels");
         settingsPage.clickSaveChangeButton();
         Assert.assertEquals(settingsPage.getChangesSavedText(), "Changes Saved!");
