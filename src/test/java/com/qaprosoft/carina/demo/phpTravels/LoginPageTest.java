@@ -44,6 +44,7 @@ public class LoginPageTest implements IAbstractTest {
 
     public void login(String email, String password) {
         LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.open();
         loginPage.setPageOpeningStrategy(PageOpeningStrategy.BY_URL);
         loginPage.typeEmail(email);
         loginPage.typePassword(password);
