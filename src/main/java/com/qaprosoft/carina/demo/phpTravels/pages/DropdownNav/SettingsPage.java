@@ -21,6 +21,9 @@ public class SettingsPage extends AbstractPage {
     @FindBy(xpath = "//button[@type='submit']")
     private ExtendedWebElement saveChangesButton;
 
+    @FindBy(xpath = "//h4[text()=\"Changes Saved!\"]")
+    private ExtendedWebElement changesSavedText;
+
     public SettingsPage(WebDriver driver) {
         super(driver);
     }
@@ -29,7 +32,15 @@ public class SettingsPage extends AbstractPage {
         return navigationBar;
     }
 
-    public void typeNameText(String newName) { nameTextField.type(newName); }
+    public void typeNameText(String newName) {
+        nameTextField.type(newName);
+    }
 
-    public void clickSaveChangeButton() { saveChangesButton.click(); }
+    public void clickSaveChangeButton() {
+        saveChangesButton.click();
+    }
+
+    public String getChangesSavedText() {
+        return changesSavedText.getText();
+    }
 }

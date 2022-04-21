@@ -31,6 +31,9 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//button[@id='btn-forgot']")
     private ExtendedWebElement resetEmailButton;
 
+    @FindBy(xpath = "//div[@class='alert alert-danger']")
+    private ExtendedWebElement forgotAccountText;
+
     public LoginPage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(loginButton);
@@ -66,7 +69,15 @@ public class LoginPage extends AbstractPage {
         rememberMeCheck.click();
     }
 
-    public void typeResetEmail(String email) { emailResetInput.type(email); }
+    public void typeResetEmail(String email) {
+        emailResetInput.type(email);
+    }
 
-    public void clickResetButton() { resetEmailButton.click(); }
+    public void clickResetButton() {
+        resetEmailButton.click();
+    }
+
+    public String getEmailNotFoundText() {
+        return forgotAccountText.getText();
+    }
 }

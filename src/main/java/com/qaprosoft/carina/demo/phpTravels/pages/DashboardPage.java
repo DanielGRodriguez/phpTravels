@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.phpTravels.pages;
 
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.phpTravels.components.BookingsMenu;
 import com.qaprosoft.carina.demo.phpTravels.components.LeftMenuBar;
@@ -18,8 +19,12 @@ public class DashboardPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='row gx-3']")
     private BookingsMenu buttonsBookings;
 
+    @FindBy(xpath = "//h1[text()=\"Dashboard\"]")
+    private ExtendedWebElement dashboardTitle;
+
     public DashboardPage(WebDriver driver) {
         super(driver);
+        setUiLoadedMarker(dashboardTitle);
     }
 
     public NavigationBar getNavigationBar() {
