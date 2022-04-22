@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.phpTravels.pages.BookingsPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DashboardPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav.SettingsPage;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -31,8 +32,8 @@ public class LeftMenuBar extends AbstractUIObject {
     @FindBy(xpath = "//div/a[17]")
     private ExtendedWebElement menuBookings;
 
-    public LeftMenuBar(WebDriver driver) {
-        super(driver);
+    public LeftMenuBar(WebDriver driver, SearchContext searchContext) {
+        super(driver, searchContext);
     }
 
     public DashboardPage openDashboardPage() {

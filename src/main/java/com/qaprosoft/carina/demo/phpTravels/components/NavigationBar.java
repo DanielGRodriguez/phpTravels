@@ -4,13 +4,17 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.phpTravels.pages.BookingsPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DashboardPage;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class NavigationBar extends AbstractUIObject {
 
     @FindBy(xpath = "//i[normalize-space()='menu']")
-    private ExtendedWebElement leftNavMenu;
+    private ExtendedWebElement leftNavMenuButton;
+
+    @FindBy(xpath = "//i[normalize-space()='menu']")
+    private LeftMenuBar leftNavMenu;
 
     @FindBy(xpath = "//div[@class='text-uppercase font-monospace']")
     private ExtendedWebElement dashboardLink;
@@ -25,15 +29,23 @@ public class NavigationBar extends AbstractUIObject {
     private ExtendedWebElement docsLink;
 
     @FindBy(xpath = "//button[@id='dropdownMenuProfile']")
-    private ExtendedWebElement userProfile;
+    private ExtendedWebElement userProfileButton;
 
-    public NavigationBar(WebDriver driver) {
-        super(driver);
+    @FindBy(xpath = "//ul[@aria-labelledby = 'dropdownMenuProfile']")
+    private ProfileDropdown profileDropdown;
+
+    public NavigationBar(WebDriver driver, SearchContext searchContext) {
+        super(driver, searchContext);
+    }
+
+    public ProfileDropdown openProfileDropdown() {
+        userProfileButton.click();
+        return profileDropdown;
     }
 
     public LeftMenuBar openLeftMenu() {
-        leftNavMenu.click();
-        return new LeftMenuBar(driver);
+        leftNavMenuButton.click();
+        return leftNavMenu;
     }
 
     public DashboardPage openDashboardPage() {
@@ -44,10 +56,5 @@ public class NavigationBar extends AbstractUIObject {
     public BookingsPage openBookingsPage() {
         bookingsLink.click();
         return new BookingsPage(driver);
-    }
-
-    public ProfileDropdown openProfileDropdown() {
-        userProfile.click();
-        return new ProfileDropdown(driver);
     }
 }

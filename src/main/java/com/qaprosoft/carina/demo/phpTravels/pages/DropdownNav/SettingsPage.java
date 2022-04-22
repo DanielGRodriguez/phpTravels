@@ -15,10 +15,10 @@ public class SettingsPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='nav']")
     private LeftMenuBar leftMenuBar;
 
-    @FindBy(xpath = "//mwc-textfield[@name='site_title']")
+    @FindBy(xpath = "//input[@name='slogan']")
     private ExtendedWebElement nameTextField;
 
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(xpath = "(//button[@type='submit'])[1]")
     private ExtendedWebElement saveChangesButton;
 
     @FindBy(xpath = "//h4[text()=\"Changes Saved!\"]")
@@ -41,7 +41,7 @@ public class SettingsPage extends AbstractPage {
         saveChangesButton.click();
     }
 
-    public String getChangesSavedText() {
-        return changesSavedText.getText();
+    public boolean getChangesSavedText() {
+        return changesSavedText.isElementPresent();
     }
 }

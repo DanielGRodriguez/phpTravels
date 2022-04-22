@@ -83,7 +83,7 @@ public class LoginPage extends AbstractPage {
         return forgotAccountText.getText();
     }
 
-    public String getSuccesfulLoginText() {
+    public String getSuccesfullLoginText() {
         return succesfulLoginText.getText();
     }
 }

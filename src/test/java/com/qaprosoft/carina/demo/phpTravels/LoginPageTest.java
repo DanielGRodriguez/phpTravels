@@ -39,9 +39,9 @@ public class LoginPageTest implements IAbstractTest {
         LeftMenuBar leftMenu =dashboardPage.getLeftMenuBar();
 
         SettingsPage settingsPage = leftMenu.openSettingsSubmenu();
-        settingsPage.typeNameText("JS Travels");
+        settingsPage.typeNameText("JS Travels | Travel Technology Partner");
         settingsPage.clickSaveChangeButton();
-        Assert.assertEquals(settingsPage.getChangesSavedText(), "Changes Saved!");
+        Assert.assertTrue(settingsPage.getChangesSavedText());
     }
 
     @Test
@@ -51,10 +51,8 @@ public class LoginPageTest implements IAbstractTest {
         NavigationBar navigationBar = dashboardPage.getNavigationBar();
 
         BookingsPage bookingsPage = navigationBar.openBookingsPage();
-        BookingsMenu bookingsMenu = bookingsPage.getBookingsButtons();
-        bookingsMenu.clickConfirmedBookings();
-        Table tableChosen = new Table(getDriver());
-        String bookingStatus = tableChosen.getChosenBookingStatus("2");
+        Table tableChosen = bookingsPage.getBookingsTable();
+        String bookingStatus = tableChosen.getChosenBookingStatus("1");
         Assert.assertEquals(bookingStatus, "Confirmed");
     }
 
@@ -65,13 +63,12 @@ public class LoginPageTest implements IAbstractTest {
         NavigationBar navigationBar = dashboardPage.getNavigationBar();
 
         BookingsPage bookingsPage = navigationBar.openBookingsPage();
-        BookingsMenu bookingsMenu = bookingsPage.getBookingsButtons();
-        bookingsMenu.clickConfirmedBookings();
-        Table tableChosen = new Table(getDriver());
-        tableChosen.deleteBooking("2");
+        Table tableChosen = bookingsPage.getBookingsTable();
+        tableChosen.deleteBooking("1");
         //Assert
     }
 
+    @Test
     public void logOutSession() {
         loginIn("admin@phptravels.com", "demoadmin");
         DashboardPage dashboardPage = new DashboardPage(getDriver());

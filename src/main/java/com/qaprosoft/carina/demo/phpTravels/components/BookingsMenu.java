@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.phpTravels.components;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.phpTravels.pages.BookingsPage;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -28,8 +29,8 @@ public class BookingsMenu extends AbstractUIObject{
     @FindBy(xpath = "//div[text() = \"Refunded Bookings\"]")
     private ExtendedWebElement refundedButton;
 
-    public BookingsMenu(WebDriver driver) {
-        super(driver);
+    public BookingsMenu(WebDriver driver, SearchContext searchContext) {
+        super(driver, searchContext);
     }
 
     public BookingsPage clickConfirmedBookings() {

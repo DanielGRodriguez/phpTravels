@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.phpTravels.components;
 
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -12,8 +13,8 @@ public class Table extends AbstractUIObject {
     @FindBy (xpath = "//tbody")
     private List<TableRow> rows;
 
-    public Table(WebDriver driver) {
-        super(driver);
+    public Table(WebDriver driver, SearchContext searchContext) {
+        super(driver, searchContext);
     }
 
     public String getChosenBookingStatus(String id) {

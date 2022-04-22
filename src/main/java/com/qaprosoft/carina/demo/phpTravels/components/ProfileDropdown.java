@@ -6,6 +6,7 @@ import com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav.HelpPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav.SettingsPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav.ProfilePage;
 import com.qaprosoft.carina.demo.phpTravels.pages.LoginPage;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -23,8 +24,8 @@ public class ProfileDropdown extends AbstractUIObject {
     @FindBy(xpath = "//div[normalize-space()='Logout']")
     private ExtendedWebElement logoutLink;
 
-    public ProfileDropdown(WebDriver driver) {
-        super(driver);
+    public ProfileDropdown(WebDriver driver, SearchContext searchContext) {
+        super(driver, searchContext);
     }
 
     public ProfilePage openProfile() {
