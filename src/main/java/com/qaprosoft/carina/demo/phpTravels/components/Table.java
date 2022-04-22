@@ -5,7 +5,6 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Table extends AbstractUIObject {
@@ -26,12 +25,13 @@ public class Table extends AbstractUIObject {
         return "";
     }
 
-    public void getChosenPaymentStatus(String id) {
+    public String getChosenPaidStatus(String id) {
         for(TableRow row : rows) {
             if(row.getBookingId().equals(id)) {
-                row.getPaymentStatus();
+                return row.getPaymentStatus();
             }
         }
+        return "";
     }
 
     public void deleteBooking(String id) {

@@ -8,22 +8,25 @@ import org.openqa.selenium.support.FindBy;
 
 public class TableRow extends AbstractUIObject {
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//td[2]")
     private ExtendedWebElement bookingId;
 
-    @FindBy(xpath = "//td/select[@id='booking_status']")
+    @FindBy(xpath = "./td/select[@id='booking_status']")
     private ExtendedWebElement bookingStatusTable;
 
-    @FindBy(xpath = "//td/select[@id='payment_status']")
+    @FindBy(xpath = "//select[@id='payment_status']")
     private ExtendedWebElement paymentStatusTable;
 
-    @FindBy(xpath = "//td/a")
+    @FindBy(xpath = "//option[text()=\"unpaid\"]")
+    private ExtendedWebElement paymentStatusOptions;
+
+    @FindBy(xpath = "./td/a")
     private ExtendedWebElement paymentExecuteTable;
 
-    @FindBy(xpath = "//td/a[@target='_blank']")
+    @FindBy(xpath = "./td/a[@target='_blank']")
     private ExtendedWebElement invoiceOperationButton;
 
-    @FindBy(xpath = "//td/button[@class='btn btn-danger mdc-ripple-upgraded']")
+    @FindBy(xpath = "//button[@onclick='del(\"1\" , \"flights\")']")
     private ExtendedWebElement deleteOperationButton;
 
     public TableRow(WebDriver driver, SearchContext searchContext) {
@@ -39,7 +42,12 @@ public class TableRow extends AbstractUIObject {
     }
 
     public String getPaymentStatus() {
-        return paymentStatusTable.getText();
+        paymentStatusTable.click();
+        return paymentStatusOptions.getText();
+    }
+
+    public void getPaymentExecute() {
+        paymentExecuteTable.click();
     }
 
     public void clickDeleteButton() { deleteOperationButton.click();}

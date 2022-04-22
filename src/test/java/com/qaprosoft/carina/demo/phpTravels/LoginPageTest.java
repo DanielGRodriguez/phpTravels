@@ -7,9 +7,7 @@ import com.qaprosoft.carina.demo.phpTravels.pages.BookingsPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DashboardPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav.SettingsPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.LoginPage;
-import com.zebrunner.agent.core.annotation.TestLabel;
 import org.testng.Assert;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 public class LoginPageTest implements IAbstractTest {
@@ -45,15 +43,17 @@ public class LoginPageTest implements IAbstractTest {
     }
 
     @Test
-    public void testConfirmedBookingsMenu() {
+    public void testUnpaidBookingsMenu() {
         loginIn("admin@phptravels.com", "demoadmin");
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         NavigationBar navigationBar = dashboardPage.getNavigationBar();
 
         BookingsPage bookingsPage = navigationBar.openBookingsPage();
+        BookingsMenu bookingsMenu = bookingsPage.getBookingsButtons();
+        bookingsMenu.clickUnpaidBookings();
         Table tableChosen = bookingsPage.getBookingsTable();
-        String bookingStatus = tableChosen.getChosenBookingStatus("1");
-        Assert.assertEquals(bookingStatus, "Confirmed");
+        String bookingStatus = tableChosen.getChosenPaidStatus("1").toUpperCase();
+        Assert.assertEquals(bookingStatus, "UNPAID");
     }
 
     @Test
@@ -63,9 +63,11 @@ public class LoginPageTest implements IAbstractTest {
         NavigationBar navigationBar = dashboardPage.getNavigationBar();
 
         BookingsPage bookingsPage = navigationBar.openBookingsPage();
+        BookingsMenu bookingsMenu = bookingsPage.getBookingsButtons();
+        bookingsMenu.clickUnpaidBookings();
         Table tableChosen = bookingsPage.getBookingsTable();
         tableChosen.deleteBooking("1");
-        //Assert
+        Assert.assertTrue(tableChosen.isAnyElementPresent());
     }
 
     @Test

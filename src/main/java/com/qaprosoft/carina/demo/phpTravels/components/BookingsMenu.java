@@ -38,8 +38,8 @@ public class BookingsMenu extends AbstractUIObject{
         return new BookingsPage(driver);
     }
 
-    public BookingsPage clickPendingBookings() {
-        pendingButton.click();
+    public BookingsPage clickUnpaidBookings() {
+        unpaidButton.click();
         return new BookingsPage(driver);
     }
 }
