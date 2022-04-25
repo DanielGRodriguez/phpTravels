@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.phpTravels;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.demo.phpTravels.components.*;
 import com.qaprosoft.carina.demo.phpTravels.pages.BookingsPage;
@@ -25,68 +26,64 @@ public class LoginPageTest implements IAbstractTest {
 
     @Test
     public void testLoginAdminAcc() {
-        loginIn("admin@phptravels.com", "demoadmin");
+        login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         Assert.assertTrue(dashboardPage.isPageOpened());
     }
 
     @Test
     public void testChangeName() {
-        loginIn("admin@phptravels.com", "demoadmin");
+        login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
-        LeftMenuBar leftMenu =dashboardPage.getLeftMenuBar();
+        SettingsPage settingsPage = dashboardPage.getLeftMenuBar().openSettingsSubmenu();
 
-        SettingsPage settingsPage = leftMenu.openSettingsSubmenu();
         settingsPage.typeNameText("JS Travels | Travel Technology Partner");
         settingsPage.clickSaveChangeButton();
-        Assert.assertTrue(settingsPage.getChangesSavedText());
+
+        Assert.assertTrue(settingsPage.getChangesSaved());
     }
 
     @Test
     public void testUnpaidBookingsMenu() {
-        loginIn("admin@phptravels.com", "demoadmin");
+        login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
-        NavigationBar navigationBar = dashboardPage.getNavigationBar();
-
-        BookingsPage bookingsPage = navigationBar.openBookingsPage();
-        BookingsMenu bookingsMenu = bookingsPage.getBookingsButtons();
+        BookingsMenu bookingsMenu = dashboardPage.getNavigationBar().openBookingsPage().getBookingsMenu();
+        BookingsPage bookingsPage = new BookingsPage(getDriver());
         bookingsMenu.clickUnpaidBookings();
-        Table tableChosen = bookingsPage.getBookingsTable();
-        String bookingStatus = tableChosen.getChosenPaidStatus("1").toUpperCase();
+        String bookingStatus = bookingsPage.getBookingsTable().getChosenPaidStatus("1").toUpperCase();
         Assert.assertEquals(bookingStatus, "UNPAID");
     }
 
     @Test
     public void testDeleteBooking() {
-        loginIn("admin@phptravels.com", "demoadmin");
+        login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         NavigationBar navigationBar = dashboardPage.getNavigationBar();
 
         BookingsPage bookingsPage = navigationBar.openBookingsPage();
-        BookingsMenu bookingsMenu = bookingsPage.getBookingsButtons();
+        BookingsMenu bookingsMenu = bookingsPage.getBookingsMenu();
         bookingsMenu.clickUnpaidBookings();
         Table tableChosen = bookingsPage.getBookingsTable();
         tableChosen.deleteBooking("1");
-        Assert.assertTrue(tableChosen.isAnyElementPresent());
+        getDriver().switchTo().alert();
+        Assert.assertTrue(tableChosen.getBookingIdExist("1"));
     }
 
     @Test
     public void logOutSession() {
-        loginIn("admin@phptravels.com", "demoadmin");
+        login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
-        NavigationBar navigationBar = dashboardPage.getNavigationBar();
-        ProfileDropdown profileDropdown = navigationBar.openProfileDropdown();
-        profileDropdown.clickLogout();
+        dashboardPage.getNavigationBar().openProfileDropdown().clickLogout();
         LoginPage loginPage = new LoginPage(getDriver());
         Assert.assertTrue(loginPage.isPageOpened());
     }
 
-    public void loginIn(String email, String password) {
+    public void login() {
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.open();
         loginPage.setPageOpeningStrategy(PageOpeningStrategy.BY_URL);
-        loginPage.typeEmail(email);
-        loginPage.typePassword(password);
+        loginPage.typeEmail(R.TESTDATA.get("test_adminAccount"));
+        loginPage.typePassword(R.TESTDATA.get("test_adminPassword"));
         loginPage.clickSubmitButton();
     }
 }

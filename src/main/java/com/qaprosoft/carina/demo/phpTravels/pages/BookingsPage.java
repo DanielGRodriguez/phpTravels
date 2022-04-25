@@ -1,14 +1,9 @@
 package com.qaprosoft.carina.demo.phpTravels.pages;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.components.NewsItem;
 import com.qaprosoft.carina.demo.phpTravels.components.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.List;
 
 public class BookingsPage extends AbstractPage {
 
@@ -34,7 +29,7 @@ public class BookingsPage extends AbstractPage {
 
     public Table getBookingsTable() { return bookingsTable; }
 
-    public BookingsMenu getBookingsButtons(){
+    public BookingsMenu getBookingsMenu(){
         return bookingsMenuButtons;
     }
 }

@@ -41,7 +41,8 @@ public class SettingsPage extends AbstractPage {
         saveChangesButton.click();
     }
 
-    public boolean getChangesSavedText() {
+    public boolean getChangesSaved() {
         return changesSavedText.isElementPresent();
     }
+
 }

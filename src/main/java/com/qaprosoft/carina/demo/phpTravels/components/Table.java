@@ -41,6 +41,12 @@ public class Table extends AbstractUIObject {
             }
         }
     }
-
-
+    public boolean getBookingIdExist(String id) {
+        for(TableRow row : rows) {
+            if(row.getBookingId().equals(id)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
