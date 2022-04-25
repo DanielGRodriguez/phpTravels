@@ -40,7 +40,7 @@ public class LoginPageTest implements IAbstractTest {
         settingsPage.typeNameText("JS Travels | Travel Technology Partner");
         settingsPage.clickSaveChangeButton();
 
-        Assert.assertTrue(settingsPage.getChangesSaved());
+        Assert.assertTrue(settingsPage.getChangesSavedText());
     }
 
     @Test
@@ -48,25 +48,26 @@ public class LoginPageTest implements IAbstractTest {
         login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         BookingsMenu bookingsMenu = dashboardPage.getNavigationBar().openBookingsPage().getBookingsMenu();
-        BookingsPage bookingsPage = new BookingsPage(getDriver());
-        bookingsMenu.clickUnpaidBookings();
-        String bookingStatus = bookingsPage.getBookingsTable().getChosenPaidStatus("1").toUpperCase();
-        Assert.assertEquals(bookingStatus, "UNPAID");
+        BookingsPage bookingsPage = bookingsMenu.clickUnpaidBookings();
+        Table table = bookingsPage.getBookingsTable();
+        for(int i = 0; i < table.getRowsCount(); i++) {
+            String bookingStatus = table.getChosenPaidStatus(Integer.toString(i)).toUpperCase();
+            Assert.assertEquals(bookingStatus, "UNPAID");
+        }
     }
 
     @Test
     public void testDeleteBooking() {
         login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
-        NavigationBar navigationBar = dashboardPage.getNavigationBar();
-
-        BookingsPage bookingsPage = navigationBar.openBookingsPage();
-        BookingsMenu bookingsMenu = bookingsPage.getBookingsMenu();
-        bookingsMenu.clickUnpaidBookings();
+        BookingsPage bookingsPage = dashboardPage.getNavigationBar()
+                .openBookingsPage()
+                .getBookingsMenu()
+                .clickUnpaidBookings();
         Table tableChosen = bookingsPage.getBookingsTable();
         tableChosen.deleteBooking("1");
         getDriver().switchTo().alert();
-        Assert.assertTrue(tableChosen.getBookingIdExist("1"));
+        Assert.assertFalse(tableChosen.isBookingIdExist("1"), "Element does not exist");
     }
 
     @Test
