@@ -66,7 +66,7 @@ public class LoginPageTest implements IAbstractTest {
                 .clickUnpaidBookings();
         Table tableChosen = bookingsPage.getBookingsTable();
         tableChosen.deleteBooking("1");
-        getDriver().switchTo().alert();
+        getDriver().switchTo().alert().accept();
         Assert.assertFalse(tableChosen.isBookingIdExist("1"), "Element does not exist");
     }
 
