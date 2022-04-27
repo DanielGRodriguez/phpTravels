@@ -6,9 +6,11 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class TableRow extends AbstractUIObject {
 
-    @FindBy(xpath = "//td[2]")
+    @FindBy(xpath = "//td[@class=\"xcrud-current xcrud-num sorting_1\"]")
     private ExtendedWebElement bookingId;
 
     @FindBy(xpath = "./td/select[@id='booking_status']")
@@ -26,7 +28,7 @@ public class TableRow extends AbstractUIObject {
     @FindBy(xpath = "./td/a[@target='_blank']")
     private ExtendedWebElement invoiceOperationButton;
 
-    @FindBy(xpath = "//button[@onclick='del(\"1\" , \"flights\")']")
+    @FindBy(xpath = "//td/button[@class=\"btn btn-danger mdc-ripple-upgraded\"]")
     private ExtendedWebElement deleteOperationButton;
 
     public TableRow(WebDriver driver, SearchContext searchContext) {

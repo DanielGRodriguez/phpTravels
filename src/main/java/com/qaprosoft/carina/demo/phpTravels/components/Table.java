@@ -31,7 +31,7 @@ public class Table extends AbstractUIObject {
                 return row.getPaymentStatus();
             }
         }
-        return "";
+        return "I know?";
     }
 
     public void deleteBooking(String id) {
