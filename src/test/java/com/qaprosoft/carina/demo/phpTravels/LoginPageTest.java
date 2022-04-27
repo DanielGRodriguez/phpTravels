@@ -8,6 +8,7 @@ import com.qaprosoft.carina.demo.phpTravels.pages.BookingsPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DashboardPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav.SettingsPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.LoginPage;
+import org.openqa.selenium.Alert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
