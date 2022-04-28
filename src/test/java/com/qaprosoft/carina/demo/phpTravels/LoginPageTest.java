@@ -16,7 +16,7 @@ import org.testng.asserts.SoftAssert;
 
 import javax.swing.*;
 
-import static com.qaprosoft.carina.demo.utils.UtilsPhpTravels.login;
+import static com.zebrunner.agent.core.webdriver.RemoteWebDriverFactory.getDriver;
 
 public class LoginPageTest implements IAbstractTest {
 
@@ -33,16 +33,14 @@ public class LoginPageTest implements IAbstractTest {
 
     @Test
     public void testLoginAdminAcc() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        login(loginPage);
+        login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         Assert.assertTrue(dashboardPage.isPageOpened());
     }
 
     @Test
     public void testChangeName() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        login(loginPage);
+        login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         SettingsPage settingsPage = dashboardPage.getLeftMenuBar().openSettingsSubmenu();
 
@@ -54,42 +52,50 @@ public class LoginPageTest implements IAbstractTest {
 
     @Test
     public void testUnpaidBookingsMenu() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        login(loginPage);
+        login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         BookingsMenu bookingsMenu = dashboardPage.getNavigationBar().openBookingsPage().getBookingsMenu();
         BookingsPage bookingsPage = bookingsMenu.clickUnpaidBookings();
         Table table = bookingsPage.getBookingsTable();
-        for(int i = 0; i < table.getRowsCount(); i++) {
-            String bookingStatus = table.getChosenPaidStatus(Integer.toString(i)).toUpperCase();
-            SoftAssert softAssert = new SoftAssert();
-            softAssert.assertEquals(bookingStatus, "UNPAID");
-        }
+
+        String bookingStatus = table.getChosenPaidStatus("1").toUpperCase();
+        Assert.assertEquals(bookingStatus, "UNPAID");
     }
 
     @Test
     public void testDeleteBooking() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        login(loginPage);
+        login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
-        BookingsPage bookingsPage = dashboardPage.getNavigationBar()
+        BookingsPage bookingsPage = dashboardPage
+                .getNavigationBar()
                 .openBookingsPage()
                 .getBookingsMenu()
                 .clickUnpaidBookings();
         Table tableChosen = bookingsPage.getBookingsTable();
         tableChosen.deleteBooking("1");
-        new WebDriverWait(getDriver(), 5);
+
         getDriver().switchTo().alert().accept();
-        Assert.assertFalse(tableChosen.isBookingIdExist("1"), "Element does not exist");
+        Assert.assertTrue(tableChosen.isBookingIdExist("1"), "Element does not exist");
     }
 
     @Test
     public void logOutSession() {
         LoginPage loginPage = new LoginPage(getDriver());
-        login(loginPage);
+        login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
-        dashboardPage.getNavigationBar().openProfileDropdown().clickLogout();
-        loginPage = new LoginPage(getDriver());
+        dashboardPage
+                .getNavigationBar()
+                .openProfileDropdown()
+                .clickLogout();
         Assert.assertTrue(loginPage.isPageOpened());
+    }
+
+    public void login() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.open();
+        loginPage.setPageOpeningStrategy(PageOpeningStrategy.BY_URL);
+        loginPage.typeEmail(R.TESTDATA.get("test_adminAccount"));
+        loginPage.typePassword(R.TESTDATA.get("test_adminPassword"));
+        loginPage.clickSubmitButton();
     }
 }

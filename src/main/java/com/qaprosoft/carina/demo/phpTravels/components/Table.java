@@ -46,13 +46,14 @@ public class Table extends AbstractUIObject {
     public boolean isBookingIdExist(String id) {
         for(TableRow row : rows) {
             if(row.getBookingId().equals(id)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public int getRowsCount() {
+
         return rows.size();
     }
 }

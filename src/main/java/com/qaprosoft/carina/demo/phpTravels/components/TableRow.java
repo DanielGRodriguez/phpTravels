@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -52,8 +53,13 @@ public class TableRow extends AbstractUIObject {
         paymentExecuteTable.click();
     }
 
-    public void clickDeleteButton() { deleteOperationButton.click();}
+    public void clickDeleteButton() {
+        Actions action = new Actions(driver);
+        action.moveToElement(deleteOperationButton.getElement()).click().perform();
+    }
 
-    public void clickInvoiceButton() { invoiceOperationButton.click();}
+    public void clickInvoiceButton() {
+        invoiceOperationButton.click();
+    }
 
 }
