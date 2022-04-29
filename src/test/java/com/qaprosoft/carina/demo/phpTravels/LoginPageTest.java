@@ -58,35 +58,19 @@ public class LoginPageTest implements IAbstractTest {
         BookingsPage bookingsPage = bookingsMenu.clickUnpaidBookings();
         Table table = bookingsPage.getBookingsTable();
 
-        String bookingStatus = table.getChosenPaidStatus("1").toUpperCase();
+        String bookingStatus = table.getChosenPaidStatus(Integer.toString(1)).toUpperCase();
         Assert.assertEquals(bookingStatus, "UNPAID");
     }
 
     @Test
-    public void testDeleteBooking() {
-        login();
-        DashboardPage dashboardPage = new DashboardPage(getDriver());
-        BookingsPage bookingsPage = dashboardPage
-                .getNavigationBar()
-                .openBookingsPage()
-                .getBookingsMenu()
-                .clickUnpaidBookings();
-        Table tableChosen = bookingsPage.getBookingsTable();
-        tableChosen.deleteBooking("1");
-
-        getDriver().switchTo().alert().accept();
-        Assert.assertTrue(tableChosen.isBookingIdExist("1"), "Element does not exist");
-    }
-
-    @Test
     public void logOutSession() {
-        LoginPage loginPage = new LoginPage(getDriver());
         login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         dashboardPage
                 .getNavigationBar()
                 .openProfileDropdown()
                 .clickLogout();
+        LoginPage loginPage = new LoginPage(getDriver());
         Assert.assertTrue(loginPage.isPageOpened());
     }
 

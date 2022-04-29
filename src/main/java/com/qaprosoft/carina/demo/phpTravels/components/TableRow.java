@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.phpTravels.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
@@ -11,16 +12,16 @@ import java.util.List;
 
 public class TableRow extends AbstractUIObject {
 
-    @FindBy(xpath = "//td[@class=\"xcrud-current xcrud-num sorting_1\"]")
+    @FindBy(xpath = "./td[2]")
     private ExtendedWebElement bookingId;
 
     @FindBy(xpath = "./td/select[@id='booking_status']")
     private ExtendedWebElement bookingStatusTable;
 
-    @FindBy(xpath = "//select[@id='payment_status']")
+    @FindBy(xpath = ".//select[@id='payment_status']")
     private ExtendedWebElement paymentStatusTable;
 
-    @FindBy(xpath = "//option[text()=\"unpaid\"]")
+    @FindBy(xpath = ".//option[text()=\"unpaid\"]")
     private ExtendedWebElement paymentStatusOptions;
 
     @FindBy(xpath = "./td/a")
@@ -29,7 +30,7 @@ public class TableRow extends AbstractUIObject {
     @FindBy(xpath = "./td/a[@target='_blank']")
     private ExtendedWebElement invoiceOperationButton;
 
-    @FindBy(xpath = "//td/button[@class=\"btn btn-danger mdc-ripple-upgraded\"]")
+    @FindBy(xpath = "./td/button[@class=\"btn btn-danger mdc-ripple-upgraded\"]")
     private ExtendedWebElement deleteOperationButton;
 
     public TableRow(WebDriver driver, SearchContext searchContext) {
@@ -45,7 +46,8 @@ public class TableRow extends AbstractUIObject {
     }
 
     public String getPaymentStatus() {
-        paymentStatusTable.click();
+        Actions actions = new Actions(driver);
+        actions.moveToElement(paymentStatusTable.getElement()).click().perform();
         return paymentStatusOptions.getText();
     }
 
@@ -61,5 +63,4 @@ public class TableRow extends AbstractUIObject {
     public void clickInvoiceButton() {
         invoiceOperationButton.click();
     }
-
 }

@@ -59,11 +59,11 @@ public class LoginPage extends AbstractPage {
         passwordInput.type(password);
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return emailInput.getText();
     }
 
-    public String getText(){
+    public String getText() {
         return passwordInput.getText();
     }
 

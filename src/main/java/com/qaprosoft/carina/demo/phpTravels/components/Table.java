@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Table extends AbstractUIObject {
 
-    @FindBy (xpath = "//tbody")
+    @FindBy (xpath = "//tbody/tr[contains(@class, 'xcrud-row')]")
     private List<TableRow> rows;
 
     public Table(WebDriver driver, SearchContext searchContext) {
@@ -17,8 +17,8 @@ public class Table extends AbstractUIObject {
     }
 
     public String getChosenBookingStatus(String id) {
-        for(TableRow row : rows) {
-            if(row.getBookingId().equals(id)) {
+        for (TableRow row : rows) {
+            if (row.getBookingId().equals(id)) {
                 return row.getBookingStatus();
             }
         }
@@ -26,26 +26,25 @@ public class Table extends AbstractUIObject {
     }
 
     public String getChosenPaidStatus(String id) {
-        for(TableRow row : rows) {
-            if(row.getBookingId().equals(id)) {
+        for (TableRow row : rows) {
+            if (row.getBookingId().equals(id)) {
                 return row.getPaymentStatus();
             }
         }
-        return "I know?";
+        return "";
     }
 
     public void deleteBooking(String id) {
-        for(TableRow row : rows) {
-            if(row.getBookingId().equals(id)) {
+        for (TableRow row : rows) {
+            if (row.getBookingId().equals(id)) {
                 row.clickDeleteButton();
             }
         }
     }
 
-
     public boolean isBookingIdExist(String id) {
-        for(TableRow row : rows) {
-            if(row.getBookingId().equals(id)) {
+        for (TableRow row : rows) {
+            if (row.getBookingId().equals(id)) {
                 return true;
             }
         }
@@ -53,7 +52,6 @@ public class Table extends AbstractUIObject {
     }
 
     public int getRowsCount() {
-
         return rows.size();
     }
 }

@@ -27,9 +27,11 @@ public class BookingsPage extends AbstractPage {
         return navigationBar;
     }
 
-    public Table getBookingsTable() { return bookingsTable; }
+    public Table getBookingsTable() {
+        return bookingsTable;
+    }
 
-    public BookingsMenu getBookingsMenu(){
+    public BookingsMenu getBookingsMenu() {
         return bookingsMenuButtons;
     }
 }
