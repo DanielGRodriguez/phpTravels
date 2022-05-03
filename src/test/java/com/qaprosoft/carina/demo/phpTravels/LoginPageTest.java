@@ -7,15 +7,17 @@ import com.qaprosoft.carina.demo.phpTravels.pages.BookingsPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DashboardPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav.SettingsPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.LoginPage;
-import com.qaprosoft.carina.demo.utils.UtilsPhpTravels;
+import com.qaprosoft.carina.demo.utils.AuthenticationUtil;
+import com.qaprosoft.carina.demo.utils.ScreenshotUtil;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static com.qaprosoft.carina.demo.utils.UtilsPhpTravels.login;
-import static com.zebrunner.agent.core.webdriver.RemoteWebDriverFactory.getDriver;
+import static com.qaprosoft.carina.demo.utils.AuthenticationUtil.login;
+
 
 public class LoginPageTest implements IAbstractTest {
-    UtilsPhpTravels utils = new UtilsPhpTravels();
+    ScreenshotUtil utils = new ScreenshotUtil();
+
     @Test
     public void testForgotAccButton() {
         LoginPage loginPage = new LoginPage(getDriver());
@@ -23,6 +25,8 @@ public class LoginPageTest implements IAbstractTest {
         loginPage.open();
         loginPage.clickForgotAcc();
         loginPage.typeResetEmail("user@jstravels.org");
+        utils.takeScreenshot("testForgotAccButton");
+        pause(3);
         loginPage.clickResetButton();
         Assert.assertEquals(loginPage.getEmailNotFoundText(), "Email Not Found");
     }

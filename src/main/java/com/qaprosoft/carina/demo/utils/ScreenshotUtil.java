@@ -1,18 +1,12 @@
 package com.qaprosoft.carina.demo.utils;
 
-import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
-import com.qaprosoft.carina.demo.phpTravels.pages.LoginPage;
-import freemarker.template.SimpleDate;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class UtilsPhpTravels implements IDriverPool {
+public class ScreenshotUtil implements IDriverPool {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     public static Calendar calendar = new GregorianCalendar();
     public static SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.yyyy-HH.mm");
@@ -30,18 +24,23 @@ public class UtilsPhpTravels implements IDriverPool {
     public static String dateToString(Date date) {
         return sdf.format(date);
     }
-    public static void login(LoginPage loginPage) {
-        loginPage.open();
-        loginPage.setPageOpeningStrategy(PageOpeningStrategy.BY_URL);
-        loginPage.typeEmail(R.TESTDATA.get("test_adminAccount"));
-        loginPage.typePassword(R.TESTDATA.get("test_adminPassword"));
-        loginPage.clickSubmitButton();
-    }
+
+    String screenName;
+    File outputFile = new File("reports//screenshots//" + screenName);
+    BufferedImage image = null;
+
 
     public void takeScreenshot() {
-        String screenName = dateToString(calendar.getTime()) + ".png";
-        File outputFile = new File("reports//screenshots//" + screenName);
-        BufferedImage image = null;
+        screenName = dateToString(calendar.getTime()) + ".png";
+        getSceenshot();
+    }
+
+    public void takeScreenshot(String customName) {
+        screenName = customName + ".png";
+        getSceenshot();
+    }
+
+    public void getSceenshot() {
         try {
             image = ImageIO.read(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE));
             ImageIO.write(image, "png", outputFile);
@@ -51,6 +50,4 @@ public class UtilsPhpTravels implements IDriverPool {
             e.printStackTrace();
         }
     }
-
-
 }
