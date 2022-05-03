@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav;
+package com.qaprosoft.carina.demo.phpTravels.pages.dropdownNav;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;

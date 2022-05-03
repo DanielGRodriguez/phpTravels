@@ -1,5 +1,7 @@
 package com.qaprosoft.carina.demo.utils;
 
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -17,32 +19,35 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class ScreenshotUtil implements IDriverPool {
+    String screenName;
+
+    File outputFile = null;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
     public static Calendar calendar = new GregorianCalendar();
+
     public static SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.yyyy-HH.mm");
 
     public static String dateToString(Date date) {
         return sdf.format(date);
     }
 
-    String screenName;
-    File outputFile = new File("reports//screenshots//" + screenName);
-    BufferedImage image = null;
-
-
     public void takeScreenshot() {
         screenName = dateToString(calendar.getTime()) + ".png";
-        getSceenshot();
+        outputFile = new File(R.CONFIG.get("fileScreenshot") + screenName);
+        getScreenshot();
     }
 
     public void takeScreenshot(String customName) {
         screenName = customName + ".png";
-        getSceenshot();
+        outputFile = new File(R.CONFIG.get("fileScreenshot") + screenName);
+        getScreenshot();
     }
 
-    public void getSceenshot() {
+    public void getScreenshot() {
         try {
-            image = ImageIO.read(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE));
+            BufferedImage image = ImageIO.read(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE));
             ImageIO.write(image, "png", outputFile);
             LOGGER.info("Screenshot saved!");
         } catch (IOException e) {

@@ -5,18 +5,17 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrat
 import com.qaprosoft.carina.demo.phpTravels.components.*;
 import com.qaprosoft.carina.demo.phpTravels.pages.BookingsPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.DashboardPage;
-import com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav.SettingsPage;
+import com.qaprosoft.carina.demo.phpTravels.pages.dropdownNav.SettingsPage;
 import com.qaprosoft.carina.demo.phpTravels.pages.LoginPage;
 import com.qaprosoft.carina.demo.utils.AuthenticationUtil;
 import com.qaprosoft.carina.demo.utils.ScreenshotUtil;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static com.qaprosoft.carina.demo.utils.AuthenticationUtil.login;
-
 
 public class LoginPageTest implements IAbstractTest {
     ScreenshotUtil utils = new ScreenshotUtil();
+    AuthenticationUtil authUtil = new AuthenticationUtil();
 
     @Test
     public void testForgotAccButton() {
@@ -33,16 +32,14 @@ public class LoginPageTest implements IAbstractTest {
 
     @Test
     public void testLoginAdminAcc() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        login(loginPage);
+        authUtil.login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         Assert.assertTrue(dashboardPage.isPageOpened());
     }
 
     @Test
     public void testChangeName() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        login(loginPage);
+        authUtil.login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         SettingsPage settingsPage = dashboardPage.getLeftMenuBar().openSettingsSubmenu();
 
@@ -56,8 +53,7 @@ public class LoginPageTest implements IAbstractTest {
 
     @Test
     public void testUnpaidBookingsMenu() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        login(loginPage);
+        authUtil.login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         BookingsMenu bookingsMenu = dashboardPage.getNavigationBar().openBookingsPage().getBookingsMenu();
         BookingsPage bookingsPage = bookingsMenu.clickUnpaidBookings();
@@ -69,14 +65,13 @@ public class LoginPageTest implements IAbstractTest {
 
     @Test
     public void logOutSession() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        login(loginPage);
+        authUtil.login();
         DashboardPage dashboardPage = new DashboardPage(getDriver());
         dashboardPage
                 .getNavigationBar()
                 .openProfileDropdown()
                 .clickLogout();
-        loginPage = new LoginPage(getDriver());
+        LoginPage loginPage = new LoginPage(getDriver());
         Assert.assertTrue(loginPage.isPageOpened());
     }
 }
