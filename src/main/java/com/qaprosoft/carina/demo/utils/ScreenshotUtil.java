@@ -1,6 +1,5 @@
 package com.qaprosoft.carina.demo.utils;
 
-import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
 import org.openqa.selenium.OutputType;
@@ -15,40 +14,29 @@ import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class ScreenshotUtil implements IDriverPool {
-    String screenName;
-
-    File outputFile = null;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public static Calendar calendar = new GregorianCalendar();
-
-    public static SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.yyyy-HH.mm");
-
-    public static String dateToString(Date date) {
-        return sdf.format(date);
+    public static String getDateToString() {
+        Calendar calendar = new GregorianCalendar();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.yyyy-HH.mm");
+        return sdf.format(calendar.getTime());
     }
 
     public void takeScreenshot() {
-        screenName = dateToString(calendar.getTime()) + ".png";
-        outputFile = new File(R.CONFIG.get("fileScreenshot") + screenName);
-        getScreenshot();
+        getScreenshot(getDateToString());
     }
 
     public void takeScreenshot(String customName) {
-        screenName = customName + ".png";
-        outputFile = new File(R.CONFIG.get("fileScreenshot") + screenName);
-        getScreenshot();
+        getScreenshot(customName);
     }
 
-    public void getScreenshot() {
+    public void getScreenshot(String screenName) {
         try {
             BufferedImage image = ImageIO.read(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE));
-            ImageIO.write(image, "png", outputFile);
+            ImageIO.write(image, "png", new File(R.CONFIG.get("fileScreenshot") + screenName + ".png"));
             LOGGER.info("Screenshot saved!");
         } catch (IOException e) {
             LOGGER.info("Unable to capture screenshot");
