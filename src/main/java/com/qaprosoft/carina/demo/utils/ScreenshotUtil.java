@@ -36,7 +36,7 @@ public class ScreenshotUtil implements IDriverPool {
     public void getScreenshot(String screenName) {
         try {
             BufferedImage image = ImageIO.read(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE));
-            ImageIO.write(image, "png", new File(R.CONFIG.get("fileScreenshot") + screenName + ".png"));
+            ImageIO.write(image, "png", new File(R.CONFIG.get("file_screenshot") + screenName + ".png"));
             LOGGER.info("Screenshot saved!");
         } catch (IOException e) {
             LOGGER.info("Unable to capture screenshot");
