@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.phpTravels.pages.DropdownNav;
+package com.qaprosoft.carina.demo.phpTravels.pages.dropdownNav;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.phpTravels.components.NavigationBar;
