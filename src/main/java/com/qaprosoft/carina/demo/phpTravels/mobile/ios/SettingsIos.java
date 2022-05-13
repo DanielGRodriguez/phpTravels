@@ -1,11 +1,14 @@
 package com.qaprosoft.carina.demo.phpTravels.mobile.ios;
 
+import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 import com.qaprosoft.carina.demo.phpTravels.mobile.common.SettingsAppBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginPageBase.class)
 public class SettingsIos extends SettingsAppBase {
 
     @FindBy(xpath = "elementId = '20000000-0000-0000-541C-000000000000'")
