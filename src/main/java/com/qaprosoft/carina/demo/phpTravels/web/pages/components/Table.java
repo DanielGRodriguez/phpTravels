@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.phpTravels.components;
+package com.qaprosoft.carina.demo.phpTravels.web.pages.components;
 
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;

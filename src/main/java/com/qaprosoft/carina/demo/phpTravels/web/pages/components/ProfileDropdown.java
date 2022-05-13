@@ -1,11 +1,11 @@
-package com.qaprosoft.carina.demo.phpTravels.components;
+package com.qaprosoft.carina.demo.phpTravels.web.pages.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.qaprosoft.carina.demo.phpTravels.pages.dropdownNav.HelpPage;
-import com.qaprosoft.carina.demo.phpTravels.pages.dropdownNav.SettingsPage;
-import com.qaprosoft.carina.demo.phpTravels.pages.dropdownNav.ProfilePage;
-import com.qaprosoft.carina.demo.phpTravels.pages.LoginPage;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.dropdownNav.HelpPage;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.dropdownNav.SettingsPage;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.dropdownNav.ProfilePage;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.LoginPage;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;

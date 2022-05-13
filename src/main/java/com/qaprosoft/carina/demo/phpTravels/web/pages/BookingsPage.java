@@ -1,7 +1,11 @@
-package com.qaprosoft.carina.demo.phpTravels.pages;
+package com.qaprosoft.carina.demo.phpTravels.web.pages;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.phpTravels.components.*;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.components.BookingsMenu;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.components.LeftMenuBar;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.components.NavigationBar;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.components.Table;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 

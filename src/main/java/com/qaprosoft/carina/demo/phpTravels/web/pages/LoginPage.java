@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.phpTravels.pages;
+package com.qaprosoft.carina.demo.phpTravels.web.pages;
 
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.R;

@@ -1,9 +1,9 @@
-package com.qaprosoft.carina.demo.phpTravels.pages.dropdownNav;
+package com.qaprosoft.carina.demo.phpTravels.web.pages.dropdownNav;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.phpTravels.components.LeftMenuBar;
-import com.qaprosoft.carina.demo.phpTravels.components.NavigationBar;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.components.LeftMenuBar;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.components.NavigationBar;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 

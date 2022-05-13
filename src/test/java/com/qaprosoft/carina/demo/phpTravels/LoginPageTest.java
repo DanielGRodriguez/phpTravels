@@ -2,11 +2,12 @@ package com.qaprosoft.carina.demo.phpTravels;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
-import com.qaprosoft.carina.demo.phpTravels.components.*;
-import com.qaprosoft.carina.demo.phpTravels.pages.BookingsPage;
-import com.qaprosoft.carina.demo.phpTravels.pages.DashboardPage;
-import com.qaprosoft.carina.demo.phpTravels.pages.dropdownNav.SettingsPage;
-import com.qaprosoft.carina.demo.phpTravels.pages.LoginPage;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.BookingsPage;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.DashboardPage;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.components.BookingsMenu;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.components.Table;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.dropdownNav.SettingsPage;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.LoginPage;
 import com.qaprosoft.carina.demo.utils.AuthenticationUtil;
 import com.qaprosoft.carina.demo.utils.ScreenshotUtil;
 import org.testng.Assert;
