@@ -3,25 +3,32 @@ package com.qaprosoft.carina.demo.phpTravels.mobile.ios;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
+import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
+import com.qaprosoft.carina.demo.phpTravels.mobile.common.MapsAppBase;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginPageBase.class)
-public class MapsApp {
+public class MapsApp extends MapsAppBase {
 
-    @FindBy(xpath = "elementId= 'F0000000-0000-0000-B217-000000000000' AND visible = 'true'")
+    @FindBy(id = "Precise Location: Off")
     private ExtendedWebElement buttonPreciseLocation;
 
-    @FindBy(xpath = "elementId = '19010000-0000-0000-B217-000000000000'")
+    @FindBy(id = "Settings")
     private ExtendedWebElement buttonMapSetting;
 
-    @FindBy(xpath = "name = 'Tracking'")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`label == \"Tracking\"`]")
     private ExtendedWebElement buttonMapTracking;
 
-    @FindBy(xpath = "elementId = 'AC050000-0000-0000-B217-000000000000'")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeSwitch[`label == \"Traffic\"`]")
     private ExtendedWebElement buttonMapTraffic;
 
-    @FindBy(xpath = "name = 'Mark My Location' AND type = 'XCUIElementTypeStaticText'")
+    @FindBy(id = "Mark My Location")
     @Predicate
     private ExtendedWebElement buttonMapMarkLocation;
+
+    public MapsApp(WebDriver driver) {
+        super(driver);
+    }
 }
