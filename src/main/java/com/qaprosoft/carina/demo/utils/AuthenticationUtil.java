@@ -3,7 +3,7 @@ package com.qaprosoft.carina.demo.utils;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
-import com.qaprosoft.carina.demo.phpTravels.pages.LoginPage;
+import com.qaprosoft.carina.demo.phpTravels.web.pages.LoginPage;
 
 import static com.zebrunner.agent.core.webdriver.RemoteWebDriverFactory.getDriver;
 
