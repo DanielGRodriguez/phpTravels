@@ -5,30 +5,29 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
-import com.qaprosoft.carina.demo.phpTravels.mobile.common.SettingsAppBase;
+import com.qaprosoft.carina.demo.phpTravels.mobile.common.SettingsNativeAppBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginPageBase.class)
-public class Settings extends SettingsAppBase {
+public class SettingsNativeApp extends SettingsNativeAppBase {
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeCell[`name == \"General\"`]")
     private ExtendedWebElement buttonSettingsGeneral;
 
-    @FindBy(id = "Sign in to your iPhone")
+    @ExtendedFindBy(accessibilityId = "Sign in to your iPhone")
     private ExtendedWebElement buttonAddProfile;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeCell[`label == \"Passwords\"`]")
     private ExtendedWebElement buttonPasswords;
 
-    @FindBy(id = "Maps")
+    @ExtendedFindBy(accessibilityId = "Maps")
     private ExtendedWebElement buttonMapPrivacy;
 
-    @FindBy(id = "username-field")
-    @Predicate
+    @ExtendedFindBy(accessibilityId = "username-field")
     private ExtendedWebElement inputEmailText;
 
-    public Settings(WebDriver driver) {
+    public SettingsNativeApp(WebDriver driver) {
         super(driver);
     }
 }

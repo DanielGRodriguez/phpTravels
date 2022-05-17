@@ -3,8 +3,8 @@ package com.qaprosoft.carina.demo.phpTravels.mobile.common;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public class SettingsAppBase extends AbstractPage {
-    public SettingsAppBase(WebDriver driver) {
+public class YoutubeHomeScreenBase extends AbstractPage {
+    public YoutubeHomeScreenBase(WebDriver driver) {
         super(driver);
     }
 }

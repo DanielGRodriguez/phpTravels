@@ -5,17 +5,17 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
-import com.qaprosoft.carina.demo.phpTravels.mobile.common.MapsAppBase;
+import com.qaprosoft.carina.demo.phpTravels.mobile.common.MapsNativeAppBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginPageBase.class)
-public class MapsApp extends MapsAppBase {
+public class MapsNativeApp extends MapsNativeAppBase {
 
-    @FindBy(id = "Precise Location: Off")
+    @ExtendedFindBy(accessibilityId = "Precise Location: Off")
     private ExtendedWebElement buttonPreciseLocation;
 
-    @FindBy(id = "Settings")
+    @ExtendedFindBy(accessibilityId = "Settings")
     private ExtendedWebElement buttonMapSetting;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`label == \"Tracking\"`]")
@@ -24,11 +24,10 @@ public class MapsApp extends MapsAppBase {
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeSwitch[`label == \"Traffic\"`]")
     private ExtendedWebElement buttonMapTraffic;
 
-    @FindBy(id = "Mark My Location")
-    @Predicate
+    @ExtendedFindBy(accessibilityId = "Mark My Location")
     private ExtendedWebElement buttonMapMarkLocation;
 
-    public MapsApp(WebDriver driver) {
+    public MapsNativeApp(WebDriver driver) {
         super(driver);
     }
 }
